@@ -1,0 +1,27 @@
+<div class="users-page box-view down-fadein">
+    <div class="header">
+        <h1>Users</h1>
+
+        <p class="description">Manage your user database.</p>
+    </div>
+    <a class="button" [routerLink]="['users/add']">New User</a>
+
+    <typeahead [hir]="hir" (keyup)="onTypeAheadKeyUp($event)"></typeahead>
+
+    <div *ngIf="users && users.length" class="item-list">
+        <ul class="data-list">
+            <li *ngFor="let user of users" class="fadein">
+                <a [routerLink]="'view/' + user.id">
+                    <h4 class="title">
+                        {{user.first_name}} {{user.last_name}}
+                        <i>{{user.title}}</i>
+                    </h4>
+                </a>
+            </li>
+        </ul>
+        <paginator [pageCount]="pageCount" [pageLimit]="pageLimit" (pageClick)="onPageClick($event)"></paginator>
+    </div>
+    <div class="empty-data-list" *ngIf="!users.length">
+          - No users found. -
+    </div>
+</div>

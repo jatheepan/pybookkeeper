@@ -1,0 +1,15 @@
+app/.idea
+.idea
+.idea/*
+app/node_modules
+app/node_modules/*
+app/resources/.sass-cache
+app/resources/.sass-cache/*
+
+*.pyc
+api/bin
+api/bin/*
+api/lib
+api/lib/*
+api/include
+api/include/*

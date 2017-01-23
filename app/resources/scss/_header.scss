@@ -1,0 +1,31 @@
+header.app-header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $primary-color-darken;
+}
+
+#logo {
+  margin-left: 10px;
+  font-size: 20px;
+
+  a {
+    padding: 14px 0;
+    display: inline-block;
+    text-decoration: none;
+  }
+}
+
+#profile-tooltip {
+  min-width: 180px;
+  margin-right: 2px;
+}
+
+.dropdown-button {
+
+  i {
+    float: right;
+    margin: 10px 0 0 15px;
+  }
+}
