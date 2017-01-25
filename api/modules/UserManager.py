@@ -1,8 +1,8 @@
-from api.model.User import User as UserModel
-from api.config.db import conn_string
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from api.config.db import conn_string
+from api.model.User import User as UserModel
 
 engine = create_engine(conn_string())
 Session = sessionmaker()
@@ -16,6 +16,8 @@ def user_list(options):
     users = []
 
     query = session.query(UserModel).limit(limit).offset((page - 1) * limit)
+    query_total = session.query(UserModel).count()
+    print query_total
 
     for user in query:
         profile = user.profile if user.profile else None
@@ -29,7 +31,12 @@ def user_list(options):
             'company_name': profile.company_name if profile else None
         })
 
-    return users
+    return {
+        'data': users,
+        'total': query_total,
+        'page': page,
+        'limit': limit
+    }
 
 
 def by_id(user_id):

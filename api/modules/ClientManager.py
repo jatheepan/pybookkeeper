@@ -1,8 +1,9 @@
-from api.model.Client import Client as ClientModel
-from api.model.Province import Province as ProvinceModel
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
 from api.config.db import conn_string
+from api.model.Client import Client as ClientModel
+from api.model.Province import Province as ProvinceModel
 
 engine = create_engine(conn_string())
 Session = sessionmaker()
@@ -16,10 +17,12 @@ def client_list(options):
     clients = []
 
     query = session\
-        .query(ClientModel, ProvinceModel)\
-        .join(ProvinceModel, ClientModel.province_id == ProvinceModel.id)\
+        .query(ClientModel, ProvinceModel) \
+        .outerjoin(ProvinceModel, ClientModel.province_id == ProvinceModel.id) \
         .limit(limit)\
         .offset((page - 1) * limit)
+
+    print query
 
     for user, province in query:
         clients.append({
@@ -33,7 +36,7 @@ def client_list(options):
             'address_line_2': user.address_line_2,
             'city': user.city,
             'postal_code': user.postal_code,
-            'province': province.title
+            'province': province.title if province else None
         })
 
     return clients

@@ -1,9 +1,9 @@
 from flask_restful import Resource, request
-import api.modules.UserManager as user
-from api.model.User import User as UserModel
-from api.config.db import conn_string
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
+import api.modules.UserManager as user
+from api.config.db import conn_string
 
 engine = create_engine(conn_string())
 Session = sessionmaker()
@@ -19,11 +19,14 @@ class UserList(Resource):
     def get(self):
         limit = int(get_url_param('limit') or 10)
         page = int(get_url_param('page') or 1)
-        users = user.user_list({'limit': limit, 'page': page})
+        result = user.user_list({'limit': limit, 'page': page})
 
         return {
             'success': True,
-            'data': users
+            'data': result['data'],
+            'total': result['total'],
+            'page': result['page'],
+            'limit': result['limit']
         }
 
 
