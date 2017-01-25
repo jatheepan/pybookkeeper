@@ -1,7 +1,7 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, TIMESTAMP
+from sqlalchemy import Column, Integer, String, DateTime, TIMESTAMP
 from api.base import Base
 from sqlalchemy.orm import relationship
-from .Profile import Profile
+from api.model.Profile import Profile
 
 
 class User(Base):

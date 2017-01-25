@@ -15,8 +15,6 @@ class Client(Base):
     address_line_2 = Column(String)
     city = Column(String)
     postal_code = Column(String)
-    # province_id = Column(String),
-    # title = Column(String),
+    province_id = Column(Integer)
     user_id = Column(Integer)
     account_id = Column(Integer)
-

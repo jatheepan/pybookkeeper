@@ -38,10 +38,9 @@ export class UserService {
 
     search(query) {
         return this._http
-            .get(`${configs.api.url}users/search/?query=${query}`)
+            .get(`${configs.api.url}users/search/?keyword=${query}`)
             .map(res => {
                 let result = res.json();
-
                 return (result && result.success) ? result.data : null;
             });
     }

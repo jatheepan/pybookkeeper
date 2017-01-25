@@ -49,3 +49,22 @@ def by_id(user_id):
         }
 
     return data
+
+
+def search(keyword):
+    query = session.query(UserModel).filter(UserModel.first_name.like('%' + keyword + '%'))
+    users = []
+
+    for user in query:
+        profile = user.profile if user.profile else None
+        data = {
+            'id': user.id,
+            'email': user.email,
+            'username': user.username,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'company_name': profile.company_name if profile else None
+        }
+        users.append(data)
+
+    return users

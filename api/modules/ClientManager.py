@@ -1,4 +1,5 @@
 from api.model.Client import Client as ClientModel
+from api.model.Province import Province as ProvinceModel
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from api.config.db import conn_string
@@ -14,21 +15,25 @@ def client_list(options):
     page = int(options['page'] or 1)
     clients = []
 
-    query = session.query(ClientModel).limit(limit).offset((page - 1) * limit)
-    for instance in query:
+    query = session\
+        .query(ClientModel, ProvinceModel)\
+        .join(ProvinceModel, ClientModel.province_id == ProvinceModel.id)\
+        .limit(limit)\
+        .offset((page - 1) * limit)
+
+    for user, province in query:
         clients.append({
-            'id': instance.id,
-            'first_name': instance.first_name,
-            'last_name': instance.last_name,
-            'company_name': instance.company_name,
-            'email': instance.email,
-            'phone_number': instance.phone_number,
-            'street': instance.street,
-            'address_line_2': instance.address_line_2,
-            'city': instance.city,
-            'postal_code': instance.postal_code,
-            # 'province_id': instance.province_id
-            # 'title': instance.title
+            'id': user.id,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'company_name': user.company_name,
+            'email': user.email,
+            'phone_number': user.phone_number,
+            'street': user.street,
+            'address_line_2': user.address_line_2,
+            'city': user.city,
+            'postal_code': user.postal_code,
+            'province': province.title
         })
 
     return clients

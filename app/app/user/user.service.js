@@ -44,7 +44,7 @@ var UserService = (function () {
     };
     UserService.prototype.search = function (query) {
         return this._http
-            .get(config_1.configs.api.url + "users/search/?query=" + query)
+            .get(config_1.configs.api.url + "users/search/?keyword=" + query)
             .map(function (res) {
             var result = res.json();
             return (result && result.success) ? result.data : null;

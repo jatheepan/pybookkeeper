@@ -13,6 +13,7 @@ api.add_resource(client.ClientList, '/clients/')
 api.add_resource(client.ClientById, '/clients/<string:client_id>')
 api.add_resource(user.UserList, '/users/')
 api.add_resource(user.UserById, '/users/<string:user_id>')
+api.add_resource(user.UserSearch, '/users/search/')
 
 if __name__ == "__main__":
     app.run(debug=True)

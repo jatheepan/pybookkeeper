@@ -29,12 +29,33 @@ class UserList(Resource):
 
 class UserById(Resource):
     def get(self, user_id):
+        result = user.by_id(user_id)
 
-        data = user.by_id(user_id)
+        if result:
+            data = {
+                'success': True,
+                'data': result
+            }
 
-        if data:
-            data['success'] = True
+        else:
+            data = {
+                'success': False,
+                'message': 'No user found'
+            }
 
+        return data
+
+
+class UserSearch(Resource):
+    def get(self):
+        keyword = get_url_param('keyword') or ''
+        result = user.search(keyword)
+
+        if result:
+            data = {
+                'success': True,
+                'data': result
+            }
         else:
             data = {
                 'success': False,
