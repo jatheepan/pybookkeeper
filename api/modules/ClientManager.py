@@ -22,7 +22,7 @@ def client_list(options):
         .limit(limit)\
         .offset((page - 1) * limit)
 
-    print query
+    query_total = session.query(ClientModel).count()
 
     for user, province in query:
         clients.append({
@@ -39,17 +39,38 @@ def client_list(options):
             'province': province.title if province else None
         })
 
-    return clients
+    return {
+        'data': clients,
+        'total': query_total,
+        'limit': limit,
+        'page': page
+    }
 
 
 def by_id(client_id):
-    query = session.query(ClientModel).filter(ClientModel.id == client_id)
-    client = query.first() or None
+    query = session\
+        .query(ClientModel, ProvinceModel)\
+        .outerjoin(ProvinceModel, ClientModel.province_id == ProvinceModel.id)\
+        .filter(ClientModel.id == client_id)\
+        .first()
+
+    client = query[0]
+    province = query[1]
+
     data = {}
 
     if client:
         data = {
-            'name': client.first_name
+            'first_name': client.first_name,
+            'last_name': client.last_name,
+            'company_name': client.company_name,
+            'email': client.email,
+            'phone_number': client.phone_number,
+            'street': client.street,
+            'address_line_2': client.address_line_2,
+            'city': client.city,
+            'postal_code': client.postal_code,
+            'province': province.title if province else None
         }
 
     return data

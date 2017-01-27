@@ -1,0 +1,18 @@
+<div class="users-page box-view down-fadein">
+    <div class="header">
+        <h1>{{client.first_name}} {{client.last_name}}</h1>
+        <div class="description">{{client.title}}</div>
+    </div>
+    <p>
+        {{client.email}}<br data-ng-if="client.email">
+        {{client.phone}}<br data-ng-if="client.phone">
+        {{client.address_line_1}}<br data-ng-if="client.address_line_1">
+        {{client.address_line_2}}<br data-ng-if="client.address_line_2">
+        {{client.postal_code}}<br data-ng-if="client.postal_code">
+    </p>
+
+    <p>
+        <!--<a [routerLink]="'/clients/edit/' + client.id" class="button">Edit</a>-->
+        <!--<button class="delete-button" (click)="onDeleteTap()">Delete</button>-->
+    </p>
+</div>

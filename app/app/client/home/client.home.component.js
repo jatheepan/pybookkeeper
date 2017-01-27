@@ -10,10 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var client_service_1 = require('../client.service');
+var config_1 = require('../../shared/config');
 var ClientHomeComponent = (function () {
     function ClientHomeComponent(_clientService) {
         this._clientService = _clientService;
         this.clients = [];
+        this.pageLimit = config_1.configs.api.limit;
     }
     ClientHomeComponent.prototype.ngOnInit = function () {
         this.loadClients();
@@ -21,10 +23,14 @@ var ClientHomeComponent = (function () {
     ClientHomeComponent.prototype.loadClients = function (page) {
         var _this = this;
         if (page === void 0) { page = 1; }
-        this._clientService.getData(page)
+        this._clientService.getData(page, this.pageLimit)
             .subscribe(function (data) {
             _this.clients = data.clients;
+            _this.pageCount = data.total;
         }, function (error) { return console.log(error); });
+    };
+    ClientHomeComponent.prototype.onPageClick = function (page) {
+        this.loadClients(page);
     };
     ClientHomeComponent = __decorate([
         core_1.Component({

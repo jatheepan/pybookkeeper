@@ -22,7 +22,7 @@
                 </a>
             </li>
         </ul>
-        <!--<paginator [pageCount]="pageCount" [pageLimit]="pageLimit" (pageClick)="onPageClick($event)"></paginator>-->
+        <paginator [pageCount]="pageCount" [pageLimit]="pageLimit" (pageClick)="onPageClick($event)"></paginator>
     </div>
     <div class="empty-data-list" *ngIf="!clients.length">
         - No clients found. -

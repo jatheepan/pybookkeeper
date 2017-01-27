@@ -25,9 +25,9 @@ export class ClientService {
             });
     }
 
-    getClientData(id) {
+    getClientDetail(id) {
         return this._http
-            .get(`${configs.api.url}/clients/`)
+            .get(`${configs.api.url}clients/${id}`)
             .map(res => {
                 let result = res.json();
 

@@ -11,7 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var common_1 = require('@angular/common');
+var paginator_module_1 = require("../shared/paginator/paginator.module");
 var client_home_component_1 = require('./home/client.home.component');
+var client_view_component_1 = require('./view/client.view.component');
 var ClientModule = (function () {
     function ClientModule() {
     }
@@ -19,9 +21,13 @@ var ClientModule = (function () {
         core_1.NgModule({
             imports: [
                 router_1.RouterModule,
-                common_1.CommonModule
+                common_1.CommonModule,
+                paginator_module_1.PaginatorModule
             ],
-            declarations: [client_home_component_1.ClientHomeComponent]
+            declarations: [
+                client_home_component_1.ClientHomeComponent,
+                client_view_component_1.ClientViewComponent
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], ClientModule);

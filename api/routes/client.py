@@ -12,11 +12,14 @@ class ClientList(Resource):
     def get(self):
         limit = int(get_url_param('limit') or 10)
         page = int(get_url_param('page') or 1)
-        data = Client.client_list({'limit': limit, 'page': page})
+        result = Client.client_list({'limit': limit, 'page': page})
 
         return {
             'success': True,
-            'data': data
+            'data': result['data'],
+            'total': result['total'],
+            'page': result['page'],
+            'limit': result['limit']
         }
 
 
@@ -24,4 +27,9 @@ class ClientById(Resource):
     """Operations to client by id."""
 
     def get(self, client_id):
-        return Client.by_id(client_id)
+        result = Client.by_id(client_id)
+
+        return {
+            'success': True,
+            'data': result
+        }

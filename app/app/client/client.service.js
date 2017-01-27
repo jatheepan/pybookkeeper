@@ -34,9 +34,9 @@ var ClientService = (function () {
             }
         });
     };
-    ClientService.prototype.getClientData = function (id) {
+    ClientService.prototype.getClientDetail = function (id) {
         return this._http
-            .get(config_1.configs.api.url + "/clients/")
+            .get(config_1.configs.api.url + "clients/" + id)
             .map(function (res) {
             var result = res.json();
             return (result && result.success) ? result.data : null;
