@@ -17,7 +17,6 @@ def user_list(options):
 
     query = session.query(UserModel).limit(limit).offset((page - 1) * limit)
     query_total = session.query(UserModel).count()
-    print query_total
 
     for user in query:
         profile = user.profile if user.profile else None

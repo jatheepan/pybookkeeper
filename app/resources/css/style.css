@@ -284,20 +284,17 @@ header.app-header {
   float: right;
   margin: 10px 0 0 15px; }
 
-.sidebar {
-  margin-top: 140px;
-  margin-right: 20px; }
-  .sidebar ul, .sidebar li {
-    margin: 0;
-    padding: 0;
-    list-style: none; }
-  .sidebar a {
-    display: block;
-    font-size: 30px;
-    text-align: center;
-    padding: 30px 10px;
-    text-decoration: none;
-    border-bottom: 1px solid black; }
+.sidebar ul, .sidebar li {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+.sidebar a {
+  display: block;
+  font-size: 30px;
+  text-align: center;
+  padding: 30px 10px;
+  text-decoration: none;
+  border-bottom: 1px solid black; }
 
 .tk-modal-mask {
   position: fixed;
@@ -2504,9 +2501,7 @@ header.app-header {
   content: ""; }
 
 #page {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between; }
+  display: flex; }
 
 .sidebar {
   width: 50px; }
