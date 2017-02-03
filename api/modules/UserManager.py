@@ -9,6 +9,15 @@ Session = sessionmaker()
 Session.configure(bind=engine)
 session = Session()
 
+profile_fields = ['company_name', 'cell_phone', 'street', 'address_line_2', 'postal_code', 'website']
+
+
+def extract_and_append(props, dic_obj, target_obj):
+    for prop in props:
+        target_obj[prop] = getattr(dic_obj, prop) if dic_obj else None
+
+    return target_obj
+
 
 def user_list(options):
     limit = int(options['limit'] or 10)
@@ -20,15 +29,17 @@ def user_list(options):
 
     for user in query:
         profile = user.profile if user.profile else None
-
-        users.append({
+        user_data = {
             'id': user.id,
             'email': user.email,
             'username': user.username,
             'first_name': user.first_name,
             'last_name': user.last_name,
-            'company_name': profile.company_name if profile else None
-        })
+            'status': user.status
+        }
+
+        extract_and_append(profile_fields,profile, user_data)
+        users.append(user_data)
 
     return {
         'data': users,
@@ -50,9 +61,9 @@ def by_id(user_id):
             'email': user.email,
             'username': user.username,
             'first_name': user.first_name,
-            'last_name': user.last_name,
-            'company_name': profile.company_name if profile else None
+            'last_name': user.last_name
         }
+        extract_and_append(profile_fields, profile, data)
 
     return data
 

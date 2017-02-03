@@ -115,7 +115,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #fff;
-  background-color: #0c1015;
+  background-color: #080a0d;
   font-family: "Roboto", sans-serif; }
 
 h1, h2, h3, h4 {
@@ -156,7 +156,7 @@ input[type=checkbox]:after {
   border: 3px solid #fff;
   background-color: #fff; }
 input[type=checkbox]:checked:after {
-  background-color: #0c1015; }
+  background-color: #080a0d; }
 
 label {
   display: inline; }
@@ -183,7 +183,7 @@ form p {
   border-radius: 3px;
   border: 1px solid rgba(255, 255, 255, 0.4); }
   .button:hover {
-    color: #0c1015;
+    color: #080a0d;
     background-color: #fff;
     -webkit-box-shadow: 0 3px 0 rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 3px 0 rgba(0, 0, 0, 0.3);
@@ -262,15 +262,20 @@ ul.data-list {
         border-color: #6daa09; }
 
 header.app-header {
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
   height: 50px;
   display: flex;
+  position: fixed;
   align-items: center;
   justify-content: space-between;
   background-color: black; }
 
 #logo {
-  margin-left: 10px;
-  font-size: 20px; }
+  font-size: 20px;
+  margin-left: 10px; }
   #logo a {
     padding: 14px 0;
     display: inline-block;
@@ -284,17 +289,20 @@ header.app-header {
   float: right;
   margin: 10px 0 0 15px; }
 
-.sidebar ul, .sidebar li {
-  margin: 0;
-  padding: 0;
-  list-style: none; }
-.sidebar a {
-  display: block;
-  font-size: 30px;
-  text-align: center;
-  padding: 30px 10px;
-  text-decoration: none;
-  border-bottom: 1px solid black; }
+.sidebar {
+  width: 100%; }
+  .sidebar ul, .sidebar li {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+  .sidebar a {
+    display: block;
+    font-size: 30px;
+    text-align: center;
+    padding: 30px 20px;
+    text-decoration: none; }
+    .sidebar a:hover {
+      color: #6daa09; }
 
 .tk-modal-mask {
   position: fixed;
@@ -418,7 +426,7 @@ header.app-header {
   .type-ahead-list li {
     padding: 10px;
     cursor: pointer;
-    color: #0c1015;
+    color: #080a0d;
     border-bottom: 1px solid #eee; }
     .type-ahead-list li:hover {
       background-color: #6daa09; }
@@ -2503,13 +2511,18 @@ header.app-header {
 #page {
   display: flex; }
 
-.sidebar {
-  width: 50px; }
+#sidebar {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  padding-top: 50px;
+  background-color: black; }
 
 .main-view {
   flex: 1;
-  padding: 0 20px;
-  margin: 60px; }
+  margin: 60px;
+  padding: 60px 0 20px; }
   .main-view .description {
     margin: 10px 0;
     text-align: center; }

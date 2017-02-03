@@ -12,17 +12,25 @@
 // Page level style
 #page {
   display: flex;
+
 }
 
+#sidebar {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  padding-top: 50px;
+  background-color: $primary-color-darken;
+}
 .sidebar {
-  width: 50px;
 }
 
 // Main view
 .main-view {
   flex: 1;
-  padding: 0 20px;
   margin: 60px;
+  padding: 60px 0 20px;
 
   .description {
     margin: 10px 0;
