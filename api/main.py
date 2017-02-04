@@ -8,12 +8,18 @@ api = Api(app)
 CORS(app)
 
 
-api.add_resource(home.Homepage, '/')
-api.add_resource(client.ClientList, '/clients/')
-api.add_resource(client.ClientById, '/clients/<string:client_id>')
-api.add_resource(user.UserList, '/users/')
-api.add_resource(user.UserById, '/users/<string:user_id>')
-api.add_resource(user.UserSearch, '/users/search/')
+path_configs = {
+    home.Homepage: '/',
+    client.ClientList: '/clients/',
+    client.ClientById: '/clients/<string:client_id>',
+    user.UserList: '/users/',
+    user.UserById: '/users/<string:user_id>',
+    user.UserSearch: '/users/search/'
+}
+
+for key, value in path_configs.iteritems():
+    api.add_resource(key, value)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
