@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var modal_component_1 = require('../../shared/modal/modal.component');
 var user_service_1 = require('../user.service');
 var UserViewComponent = (function () {
     /**
@@ -39,14 +38,9 @@ var UserViewComponent = (function () {
                 .subscribe(function (data) { return _this.user = data; });
         });
     };
-    /**
-     * TODO: Delete User
-     */
-    UserViewComponent.prototype.onDeleteTap = function () {
-        var modal = new modal_component_1.ModalComponent();
-        modal.confirm({
-            message: 'Are youu sure?'
-        }, function (value) { return console.log('done', value); });
+    //TODO do delete
+    UserViewComponent.prototype.onUserConfirm = function (answer) {
+        console.log(answer);
     };
     UserViewComponent = __decorate([
         core_1.Component({

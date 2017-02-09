@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {ModalComponent} from '../../shared/modal/modal.component';
 import {UserService} from '../user.service';
 
 @Component({
@@ -38,13 +37,8 @@ export class UserViewComponent implements OnInit{
         });
     }
 
-    /**
-     * TODO: Delete User
-     */
-    onDeleteTap() {
-        let modal = new ModalComponent();
-        modal.confirm({
-            message: 'Are youu sure?'
-        }, value => console.log('done', value));
+    //TODO do delete
+    onUserConfirm(answer:any): void {
+        console.log(answer);
     }
 }

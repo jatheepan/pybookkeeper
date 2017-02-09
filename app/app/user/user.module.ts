@@ -5,6 +5,7 @@ import {UserHomeComponent, UserEditComponent, UserViewComponent} from './user.co
 import {PaginatorModule} from "../shared/paginator/paginator.module";
 import {ModalModule} from "../shared/modal/modal.module";
 import {TypeAheadModule} from "../shared/typeAhead/typeAhead.module";
+import {ConfirmDirective} from '../shared/directives/confirm.directive'
 
 @NgModule({
     imports: [
@@ -14,7 +15,12 @@ import {TypeAheadModule} from "../shared/typeAhead/typeAhead.module";
         TypeAheadModule,
         ModalModule
     ],
-    declarations: [UserHomeComponent, UserViewComponent, UserEditComponent],
+    declarations: [
+        UserHomeComponent,
+        UserViewComponent,
+        UserEditComponent,
+        ConfirmDirective
+    ],
     exports: [UserHomeComponent, UserViewComponent, UserEditComponent]
 })
 

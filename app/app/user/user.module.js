@@ -15,6 +15,7 @@ var user_component_1 = require('./user.component');
 var paginator_module_1 = require("../shared/paginator/paginator.module");
 var modal_module_1 = require("../shared/modal/modal.module");
 var typeAhead_module_1 = require("../shared/typeAhead/typeAhead.module");
+var confirm_directive_1 = require('../shared/directives/confirm.directive');
 var UserModule = (function () {
     function UserModule() {
     }
@@ -27,7 +28,12 @@ var UserModule = (function () {
                 typeAhead_module_1.TypeAheadModule,
                 modal_module_1.ModalModule
             ],
-            declarations: [user_component_1.UserHomeComponent, user_component_1.UserViewComponent, user_component_1.UserEditComponent],
+            declarations: [
+                user_component_1.UserHomeComponent,
+                user_component_1.UserViewComponent,
+                user_component_1.UserEditComponent,
+                confirm_directive_1.ConfirmDirective
+            ],
             exports: [user_component_1.UserHomeComponent, user_component_1.UserViewComponent, user_component_1.UserEditComponent]
         }), 
         __metadata('design:paramtypes', [])
