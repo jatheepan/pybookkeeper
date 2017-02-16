@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import sessionmaker
 
 from api.config.db import conn_string
@@ -6,7 +7,7 @@ from api.model.User import User as UserModel
 
 engine = create_engine(conn_string())
 Session = sessionmaker()
-Session.configure(bind=engine)
+Session.configure(bind = engine)
 session = Session()
 
 profile_fields = ['company_name', 'cell_phone', 'street', 'address_line_2', 'postal_code', 'website']
@@ -38,7 +39,7 @@ def user_list(options):
             'status': user.status
         }
 
-        extract_and_append(profile_fields,profile, user_data)
+        extract_and_append(profile_fields, profile, user_data)
         users.append(user_data)
 
     return {
@@ -85,3 +86,35 @@ def search(keyword):
         users.append(data)
 
     return users
+
+
+def save(data):
+    user = UserModel(
+        username = data['username'],
+        password = data['password'],
+        first_name = data['first_name'],
+        last_name = data['last_name'],
+        email = data['email'],
+        user_role_id = data['user_role_id'],
+        package_id = data['package_id'],
+        status = data['status']
+    )
+    error = None
+    try:
+        session.add(user)
+        session.commit()
+    except SQLAlchemyError:
+        error = 'Unable to save. Missing required fields.'
+    finally:
+        return {
+            'error': error,
+            'data': {
+                'username': user.username,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'email': user.email,
+                'user_role_id': user.user_role_id,
+                'package_id': user.package_id,
+                'status': user.status
+            }
+        }

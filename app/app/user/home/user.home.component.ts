@@ -59,10 +59,10 @@ export class UserHomeComponent implements OnInit {
             if(value.length) {
                 this._userService.search(value)
                     .subscribe(
-                        data => {
-                            this.localObserver.next(data);
-                        },
-                        error => console.log(error)
+                        // data => {
+                            // this.localObserver.next(data);
+                        // },
+                        // error => console.log(error)
                     );
             }
             else {

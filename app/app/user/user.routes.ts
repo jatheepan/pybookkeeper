@@ -1,7 +1,8 @@
 import {Route} from '@angular/router';
-import {UserHomeComponent} from "./home/user.home.component";
-import {UserViewComponent} from "./view/user.view.component";
-import {UserEditComponent} from "./edit/user.edit.component";
+import {UserHomeComponent} from './home/user.home.component';
+import {UserViewComponent} from './view/user.view.component';
+import {UserEditComponent} from './edit/user.edit.component';
+import {UserAddComponent} from './add/user.add.component';
 
 export const UserRoutes: Route[] = [{
     path: 'users',
@@ -12,4 +13,7 @@ export const UserRoutes: Route[] = [{
 },{
     path: 'users/edit/:id',
     component: UserEditComponent
+}, {
+    path: 'users/add',
+    component: UserAddComponent
 }];

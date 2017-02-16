@@ -63,13 +63,17 @@ input[type=checkbox] {
   }
 }
 
-label {
-  display: inline;
+select {
+  background-color: transparent;
+}
 
-  &:after {
-    content: ':';
-    display: inline-block;
-    margin-left: 2px;
+label {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 24px;
+
+  input {
+    margin-top: 10px;
   }
 }
 

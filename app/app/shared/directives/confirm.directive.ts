@@ -29,7 +29,5 @@ export class ConfirmDirective {
                 this.cancel.emit(this.data);
             }
         });
-
     }
-
 }

@@ -11,11 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var common_1 = require('@angular/common');
-var user_component_1 = require('./user.component');
 var paginator_module_1 = require("../shared/paginator/paginator.module");
 var modal_module_1 = require("../shared/modal/modal.module");
 var typeAhead_module_1 = require("../shared/typeAhead/typeAhead.module");
 var confirm_directive_1 = require('../shared/directives/confirm.directive');
+var tag_module_1 = require('../shared/tag/tag.module');
+var user_component_1 = require('./user.component');
+var forms_1 = require('@angular/forms');
 var UserModule = (function () {
     function UserModule() {
     }
@@ -24,17 +26,21 @@ var UserModule = (function () {
             imports: [
                 router_1.RouterModule,
                 common_1.CommonModule,
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
                 paginator_module_1.PaginatorModule,
                 typeAhead_module_1.TypeAheadModule,
-                modal_module_1.ModalModule
+                modal_module_1.ModalModule,
+                tag_module_1.TagModule
             ],
             declarations: [
                 user_component_1.UserHomeComponent,
                 user_component_1.UserViewComponent,
                 user_component_1.UserEditComponent,
+                user_component_1.UserAddComponent,
                 confirm_directive_1.ConfirmDirective
             ],
-            exports: [user_component_1.UserHomeComponent, user_component_1.UserViewComponent, user_component_1.UserEditComponent]
+            exports: [user_component_1.UserHomeComponent, user_component_1.UserViewComponent, user_component_1.UserEditComponent, user_component_1.UserAddComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], UserModule);

@@ -29,6 +29,20 @@ class UserList(Resource):
             'limit': result['limit']
         }
 
+    def post(self):
+        response = user.save(request.json)
+
+        if response['error']:
+            return {
+                'success': False,
+                'message': response['error']
+            }
+        else:
+            return {
+                'success': True,
+                'data': response['data']
+            }
+
 
 class UserById(Resource):
     def get(self, user_id):

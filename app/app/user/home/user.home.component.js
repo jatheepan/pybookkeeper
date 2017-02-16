@@ -52,13 +52,10 @@ var UserHomeComponent = (function () {
      * @param value
      */
     UserHomeComponent.prototype.onTypeAheadKeyUp = function (value) {
-        var _this = this;
         if (typeof value === 'string') {
             if (value.length) {
                 this._userService.search(value)
-                    .subscribe(function (data) {
-                    _this.localObserver.next(data);
-                }, function (error) { return console.log(error); });
+                    .subscribe();
             }
             else {
                 this.localObserver.next([]);

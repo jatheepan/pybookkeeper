@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
 var config_1 = require('../shared/config');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
@@ -34,6 +35,22 @@ var UserService = (function () {
             }
         });
     };
+    UserService.prototype.saveUser = function (user) {
+        var headers = new http_1.Headers({
+            'Content-Type': 'application/json'
+        });
+        return this._http
+            .post(config_1.configs.api.url + "users/", user, headers)
+            .map(function (res) { return res.json(); });
+    };
+    UserService.prototype.updateUser = function (id, user) {
+        var headers = new http_1.Headers({
+            'Content-Type': 'application/json'
+        });
+        return this._http
+            .put(config_1.configs.api.url + "users/" + id, user, headers)
+            .map(function (res) { return res.json(); });
+    };
     UserService.prototype.getUserDetail = function (id) {
         return this._http
             .get(config_1.configs.api.url + "users/" + id)
@@ -57,4 +74,15 @@ var UserService = (function () {
     return UserService;
 }());
 exports.UserService = UserService;
+exports.userModel = {
+    username: ['username', [forms_1.Validators.required, forms_1.Validators.minLength(6)]],
+    password: ['password', [forms_1.Validators.required, forms_1.Validators.minLength(6)]],
+    first_name: ['your first name', [forms_1.Validators.required]],
+    last_name: ['your last name', [forms_1.Validators.required]],
+    email: ['email', [forms_1.Validators.required]],
+    user_role_id: ['user_role_id', [forms_1.Validators.required]],
+    package_id: ['package_id', [forms_1.Validators.required]],
+    status: ['status', [forms_1.Validators.required]],
+    tags: ['']
+};
 //# sourceMappingURL=user.service.js.map
