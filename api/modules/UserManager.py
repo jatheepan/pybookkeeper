@@ -118,3 +118,36 @@ def save(data):
                 'status': user.status
             }
         }
+
+
+def update(user_id, data):
+    error = None
+    user = None
+    try:
+        user = session.query(UserModel).filter(UserModel.id == user_id).first()
+        if data['first_name']: user.first_name = data['first_name']
+        if data['last_name']: user.last_name = data['last_name']
+        if data['email']: user.email = data['email']
+        if data['user_role_id']: user.user_role_id = data['user_role_id']
+        if data['package_id']: user.package_id = data['package_id']
+        if data['status']: user.status = data['status']
+        session.commit()
+    except SQLAlchemyError as e:
+        error = e
+    finally:
+        result = {
+            'error': error
+        }
+        if user and user.id:
+            result['data'] = {
+                'id': user.id,
+                'username': user.username,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'email': user.email,
+                'user_role_id': user.user_role_id,
+                'package_id': user.package_id,
+                'status': user.status
+            }
+
+        return result

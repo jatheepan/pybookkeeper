@@ -63,6 +63,11 @@ class UserById(Resource):
         return data
 
 
+    def put(self, user_id):
+        response = user.update(user_id, request.json)
+        return response
+
+
 class UserSearch(Resource):
     def get(self):
         keyword = get_url_param('keyword') or ''
