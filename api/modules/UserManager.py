@@ -125,6 +125,7 @@ def update(user_id, data):
     user = None
     try:
         user = session.query(UserModel).filter(UserModel.id == user_id).first()
+        if data['username']: user.username = data['username']
         if data['first_name']: user.first_name = data['first_name']
         if data['last_name']: user.last_name = data['last_name']
         if data['email']: user.email = data['email']

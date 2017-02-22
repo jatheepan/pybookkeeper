@@ -5,14 +5,17 @@ import {
     FormGroup,
     FormBuilder
 } from '@angular/forms'
+import {ModalComponent} from "../../shared/modal/modal.component";
+
 @Component({
     templateUrl: './app/user/edit/user.edit.component.html',
     providers: [UserService],
 })
 
 export class UserEditComponent implements OnInit {
-    public userEditForm:FormGroup;
-    constructor(private route: ActivatedRoute, public _fb:FormBuilder, private _service: UserService) {
+    public userEditForm: FormGroup;
+
+    constructor(private route: ActivatedRoute, public _fb: FormBuilder, private _service: UserService) {
     }
 
     ngOnInit() {
@@ -21,7 +24,23 @@ export class UserEditComponent implements OnInit {
     }
 
     onUserFormSubmit(model, valid) {
-
+        let modal = new ModalComponent();
+        if(!valid) {
+            return modal.alert('Missing required fields.');
+        }
+        this.route.params.subscribe(params => {
+            this._service.updateUser(params['id'], model)
+                .subscribe(data => {
+                    if(data.success !== true) {
+                        modal.alert('Unable to update.');
+                    }
+                    else {
+                        this.userEditForm = this._fb.group(data);
+                    }
+                }, err => {
+                    model.alert('Unable to update.');
+                });
+        });
     }
 
     /**

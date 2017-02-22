@@ -65,8 +65,18 @@ class UserById(Resource):
 
     def put(self, user_id):
         response = user.update(user_id, request.json)
-        return response
 
+        if response['error']:
+            return {
+                'success': False,
+                'message': response['error'],
+                'data': response['data']
+            }
+        else:
+            return {
+                'success': True,
+                'data': response['data']
+            }
 
 class UserSearch(Resource):
     def get(self):

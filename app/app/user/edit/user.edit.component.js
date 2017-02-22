@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var user_service_1 = require('../user.service');
 var forms_1 = require('@angular/forms');
+var modal_component_1 = require("../../shared/modal/modal.component");
 var UserEditComponent = (function () {
     function UserEditComponent(route, _fb, _service) {
         this.route = route;
@@ -23,6 +24,24 @@ var UserEditComponent = (function () {
         this.loadUserData();
     };
     UserEditComponent.prototype.onUserFormSubmit = function (model, valid) {
+        var _this = this;
+        var modal = new modal_component_1.ModalComponent();
+        if (!valid) {
+            return modal.alert('Missing required fields.');
+        }
+        this.route.params.subscribe(function (params) {
+            _this._service.updateUser(params['id'], model)
+                .subscribe(function (data) {
+                if (data.success !== true) {
+                    modal.alert('Unable to update.');
+                }
+                else {
+                    _this.userEditForm = _this._fb.group(data);
+                }
+            }, function (err) {
+                model.alert('Unable to update.');
+            });
+        });
     };
     /**
      * Load user from service
