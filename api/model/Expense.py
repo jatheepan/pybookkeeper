@@ -9,6 +9,7 @@ class Expense(Base):
     user_id = Column(Integer)
     account_id = Column(Integer)
     expense_type_id = Column(Integer)
+    expense_account_id = Column(Integer)
     date = Column(DateTime)
     issued_by = Column(String)
     invoice_no = Column(Integer)
