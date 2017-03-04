@@ -19,3 +19,12 @@ class IncomeList(Resource):
             'limit': limit,
             'page': page
         }
+
+class IncomeById(Resource):
+    def get(self, income_id):
+        result = income.by_id(income_id)
+
+        return {
+            'success': True,
+            'data': result
+        }

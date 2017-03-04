@@ -41,7 +41,7 @@ def expense_list(options):
             'amount': expense.amount,
             'hst_amount': expense.hst_amount,
             'user_entered_hst': expense.user_entered_hst,
-            'date': expense.date.strftime("%y-%m-%d")
+            'date': expense.date.strftime("%Y-%m-%d")
         })
 
     return {
@@ -67,18 +67,16 @@ def by_id(id):
     expense_type = query[3]
 
     return {
-        'data': {
-            'id': client.id,
-            'user_id': client.user_id,
-            'province': province.title,
-            'account_id': client.account_id,
-            'date': client.date.strftime("%y-%m-%d"),
-            'issued_by': client.issued_by,
-            'invoice_no': client.invoice_no,
-            'amount': client.amount,
-            'hst_amount': client.hst_amount,
-            'user_entered_hst': client.user_entered_hst,
-            'expense_account': expense_account.title,
-            'expense_type': expense_type.title
-        }
+        'id': client.id,
+        'user_id': client.user_id,
+        'province': province.title,
+        'account_id': client.account_id,
+        'date': client.date.strftime("%Y-%m-%d"),
+        'issued_by': client.issued_by,
+        'invoice_no': client.invoice_no,
+        'amount': client.amount,
+        'hst_amount': client.hst_amount,
+        'user_entered_hst': client.user_entered_hst,
+        'expense_account': expense_account.title,
+        'expense_type': expense_type.title
     }

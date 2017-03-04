@@ -17,7 +17,8 @@ path_configs = {
     user.UserSearch: '/users/search/',
     expense.ExpenseList: '/expenses/',
     expense.ExpenseById: '/expenses/<string:expense_id>',
-    income.IncomeList: '/incomes/'
+    income.IncomeList: '/incomes/',
+    income.IncomeById: '/incomes/<string:income_id>'
 }
 
 for key, value in path_configs.iteritems():
