@@ -1,14 +1,5 @@
 from flask_restful import Resource, request
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
 import api.modules.ExpenseManager as expense
-from api.config.db import conn_string
-
-engine = create_engine(conn_string())
-Session = sessionmaker()
-Session.configure(bind=engine)
-session = Session()
 
 
 def get_url_param(key):
@@ -27,4 +18,13 @@ class ExpenseList(Resource):
             'total': result['total'],
             'page': result['page'],
             'limit': result['limit']
+        }
+
+
+class ExpenseById(Resource):
+    def get(self, expense_id):
+        result = expense.by_id(expense_id)
+        return {
+            'success': True,
+            'data': result
         }

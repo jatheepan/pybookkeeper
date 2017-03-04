@@ -5,7 +5,7 @@ from api.base import Base
 class Expense(Base):
     __tablename__ = 'expenses'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key = True)
     user_id = Column(Integer)
     account_id = Column(Integer)
     expense_type_id = Column(Integer)
@@ -16,3 +16,4 @@ class Expense(Base):
     amount = Column(Float)
     hst_amount = Column(Float)
     user_entered_hst = Column(SmallInteger)
+    province_id = Column(Integer)
