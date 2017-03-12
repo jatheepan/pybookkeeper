@@ -35,7 +35,7 @@ var UserService = (function () {
             }
         });
     };
-    UserService.prototype.saveUser = function (user) {
+    UserService.prototype.save = function (user) {
         var headers = new http_1.Headers({
             'Content-Type': 'application/json'
         });
@@ -43,7 +43,7 @@ var UserService = (function () {
             .post(config_1.configs.api.url + "users/", user, headers)
             .map(function (res) { return res.json(); });
     };
-    UserService.prototype.updateUser = function (id, user) {
+    UserService.prototype.update = function (id, user) {
         var headers = new http_1.Headers({
             'Content-Type': 'application/json'
         });
@@ -62,6 +62,14 @@ var UserService = (function () {
     UserService.prototype.search = function (query) {
         return this._http
             .get(config_1.configs.api.url + "users/search/?keyword=" + query)
+            .map(function (res) {
+            var result = res.json();
+            return (result && result.success) ? result.data : null;
+        });
+    };
+    UserService.prototype.erase = function (id) {
+        return this._http
+            .delete(config_1.configs.api.url + "users/" + id)
             .map(function (res) {
             var result = res.json();
             return (result && result.success) ? result.data : null;

@@ -29,7 +29,7 @@ export class UserEditComponent implements OnInit {
             return modal.alert('Missing required fields.');
         }
         this.route.params.subscribe(params => {
-            this._service.updateUser(params['id'], model)
+            this._service.update(params['id'], model)
                 .subscribe(data => {
                     if(data.success !== true) {
                         modal.alert('Unable to update.');

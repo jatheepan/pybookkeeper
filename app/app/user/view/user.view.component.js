@@ -14,12 +14,12 @@ var user_service_1 = require('../user.service');
 var UserViewComponent = (function () {
     /**
      * Constructor
-     * @param route
-     * @param service
+     * @param _route
+     * @param _service
      */
-    function UserViewComponent(route, service) {
-        this.route = route;
-        this.service = service;
+    function UserViewComponent(_route, _service) {
+        this._route = _route;
+        this._service = _service;
         this.user = {};
     }
     /**
@@ -33,14 +33,17 @@ var UserViewComponent = (function () {
      */
     UserViewComponent.prototype.loadUserData = function () {
         var _this = this;
-        this.route.params.subscribe(function (params) {
-            _this.service.getUserDetail(params['id'])
+        this._route.params.subscribe(function (params) {
+            _this._service.getUserDetail(params['id'])
                 .subscribe(function (data) { return _this.user = data; });
         });
     };
     //TODO do delete
-    UserViewComponent.prototype.onUserConfirm = function (answer) {
-        console.log(answer);
+    UserViewComponent.prototype.onDeleteConfirm = function (user) {
+        this._service.erase(user.id)
+            .subscribe(function (data) {
+            console.log(data);
+        });
     };
     UserViewComponent = __decorate([
         core_1.Component({

@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Validators} from '@angular/forms';
 import {configs} from '../shared/config';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -35,3 +36,16 @@ export class ClientService {
             });
     }
 }
+
+export let clientModel = {
+    first_name: ['Your first name', [<any>Validators.required]],
+    last_name: ['Your last name', [<any>Validators.required]],
+    email: ['Email', [<any>Validators.required]],
+    address_line_2: ['Address line 2', [<any>Validators.required]],
+    street: ['Street', [<any>Validators.required]],
+    city: ['City', [<any>Validators.required]],
+    postal_code: ['Postal code', [<any>Validators.required]],
+    province_id: ['Province', [<any>Validators.required]],
+    company_name: ['Company name', [<any>Validators.required]],
+    phone_number: ['Phone number']
+};

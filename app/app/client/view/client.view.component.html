@@ -11,7 +11,7 @@
     </p>
 
     <p>
-        <!--<a [routerLink]="'/clients/edit/' + client.id" class="button">Edit</a>-->
-        <!--<button class="delete-button" (click)="onDeleteTap()">Delete</button>-->
+        <a [routerLink]="'/clients/edit/' + client.id" class="button">Edit</a>
+        <button class="delete-button" confirm (confirm)="onClientConfirm($event)" [passeddata]="client">Delete</button>
     </p>
 </div>

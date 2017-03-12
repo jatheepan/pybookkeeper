@@ -27,7 +27,7 @@ export class UserService {
             });
     }
 
-    saveUser(user:any) {
+    save(user:any) {
         let headers = new Headers({
             'Content-Type': 'application/json'
         });
@@ -36,7 +36,7 @@ export class UserService {
             .map(res => res.json());
     }
 
-    updateUser(id:number, user:any) {
+    update(id:number, user:any) {
         let headers = new Headers({
             'Content-Type': 'application/json'
         });
@@ -58,6 +58,15 @@ export class UserService {
     search(query) {
         return this._http
             .get(`${configs.api.url}users/search/?keyword=${query}`)
+            .map(res => {
+                let result = res.json();
+                return (result && result.success) ? result.data : null;
+            });
+    }
+
+    erase(id:number) {
+        return this._http
+            .delete(`${configs.api.url}users/${id}`)
             .map(res => {
                 let result = res.json();
                 return (result && result.success) ? result.data : null;

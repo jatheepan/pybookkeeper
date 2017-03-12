@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
 var config_1 = require('../shared/config');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
@@ -49,4 +50,16 @@ var ClientService = (function () {
     return ClientService;
 }());
 exports.ClientService = ClientService;
+exports.clientModel = {
+    first_name: ['Your first name', [forms_1.Validators.required]],
+    last_name: ['Your last name', [forms_1.Validators.required]],
+    email: ['Email', [forms_1.Validators.required]],
+    address_line_2: ['Address line 2', [forms_1.Validators.required]],
+    street: ['Street', [forms_1.Validators.required]],
+    city: ['City', [forms_1.Validators.required]],
+    postal_code: ['Postal code', [forms_1.Validators.required]],
+    province_id: ['Province', [forms_1.Validators.required]],
+    company_name: ['Company name', [forms_1.Validators.required]],
+    phone_number: ['Phone number']
+};
 //# sourceMappingURL=client.service.js.map

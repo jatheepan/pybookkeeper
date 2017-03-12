@@ -23,7 +23,9 @@ import {DashboardModule} from './dashboard/dashboard.module';
         HeaderModule,
         SidebarModule
     ],
-    declarations: [AppComponent],
+    declarations: [
+        AppComponent
+    ],
     bootstrap: [AppComponent]
 })
 

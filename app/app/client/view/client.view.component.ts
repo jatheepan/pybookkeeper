@@ -34,5 +34,9 @@ export class ClientViewComponent implements OnInit {
                 .subscribe(data => this.client = data);
         })
     }
+
+    onClientConfirm(client) {
+
+    }
 }
 

@@ -13,9 +13,9 @@ var user_service_1 = require('../user.service');
 var forms_1 = require('@angular/forms');
 var modal_component_1 = require("../../shared/modal/modal.component");
 var UserAddComponent = (function () {
-    function UserAddComponent(_fb, _userService) {
+    function UserAddComponent(_fb, _service) {
         this._fb = _fb;
-        this._userService = _userService;
+        this._service = _service;
     }
     UserAddComponent.prototype.ngOnInit = function () {
         this.userAddForm = this._fb.group(user_service_1.userModel);
@@ -25,7 +25,7 @@ var UserAddComponent = (function () {
         if (!valid) {
             return modal.alert('Missing required fields.');
         }
-        this._userService.saveUser(model)
+        this._service.save(model)
             .subscribe(function (data) {
             if (data.success !== true) {
                 modal.alert(data.message);

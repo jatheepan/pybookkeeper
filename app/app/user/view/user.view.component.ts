@@ -12,10 +12,10 @@ export class UserViewComponent implements OnInit{
 
     /**
      * Constructor
-     * @param route
-     * @param service
+     * @param _route
+     * @param _service
      */
-    constructor(private route: ActivatedRoute, private service: UserService) {
+    constructor(private _route: ActivatedRoute, private _service: UserService) {
     }
 
     /**
@@ -29,8 +29,8 @@ export class UserViewComponent implements OnInit{
      * Load user from service
      */
     loadUserData() {
-        this.route.params.subscribe(params => {
-            this.service.getUserDetail(params['id'])
+        this._route.params.subscribe(params => {
+            this._service.getUserDetail(params['id'])
                 .subscribe(
                     data => this.user = data
                 )
@@ -38,7 +38,13 @@ export class UserViewComponent implements OnInit{
     }
 
     //TODO do delete
-    onUserConfirm(answer:any): void {
-        console.log(answer);
+    onDeleteConfirm(user:any): void {
+        this._service.erase(user.id)
+            .subscribe(
+                data => {
+                    console.log(data);
+                }
+            )
+
     }
 }

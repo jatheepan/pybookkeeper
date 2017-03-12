@@ -38,6 +38,8 @@ var ClientViewComponent = (function () {
                 .subscribe(function (data) { return _this.client = data; });
         });
     };
+    ClientViewComponent.prototype.onClientConfirm = function (client) {
+    };
     ClientViewComponent = __decorate([
         core_1.Component({
             templateUrl: './app/client/view/client.view.component.html',

@@ -14,8 +14,8 @@ var common_1 = require('@angular/common');
 var paginator_module_1 = require("../shared/paginator/paginator.module");
 var modal_module_1 = require("../shared/modal/modal.module");
 var typeAhead_module_1 = require("../shared/typeAhead/typeAhead.module");
-var confirm_directive_1 = require('../shared/directives/confirm.directive');
 var tag_module_1 = require('../shared/tag/tag.module');
+var directives_module_1 = require('../shared/directives/directives.module');
 var user_component_1 = require('./user.component');
 var forms_1 = require('@angular/forms');
 var UserModule = (function () {
@@ -31,14 +31,14 @@ var UserModule = (function () {
                 paginator_module_1.PaginatorModule,
                 typeAhead_module_1.TypeAheadModule,
                 modal_module_1.ModalModule,
-                tag_module_1.TagModule
+                tag_module_1.TagModule,
+                directives_module_1.DirectivesModule
             ],
             declarations: [
                 user_component_1.UserHomeComponent,
                 user_component_1.UserViewComponent,
                 user_component_1.UserEditComponent,
-                user_component_1.UserAddComponent,
-                confirm_directive_1.ConfirmDirective
+                user_component_1.UserAddComponent
             ],
             exports: [user_component_1.UserHomeComponent, user_component_1.UserViewComponent, user_component_1.UserEditComponent, user_component_1.UserAddComponent]
         }), 

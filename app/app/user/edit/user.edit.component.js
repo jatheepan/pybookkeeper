@@ -30,7 +30,7 @@ var UserEditComponent = (function () {
             return modal.alert('Missing required fields.');
         }
         this.route.params.subscribe(function (params) {
-            _this._service.updateUser(params['id'], model)
+            _this._service.update(params['id'], model)
                 .subscribe(function (data) {
                 if (data.success !== true) {
                     modal.alert('Unable to update.');

@@ -12,7 +12,7 @@ import {ModalComponent} from "../../shared/modal/modal.component";
 })
 export class UserAddComponent implements OnInit {
     public userAddForm: FormGroup;
-    constructor(public _fb:FormBuilder, public _userService: UserService) {}
+    constructor(public _fb:FormBuilder, public _service: UserService) {}
     ngOnInit() {
         this.userAddForm = this._fb.group(userModel);
     }
@@ -22,7 +22,7 @@ export class UserAddComponent implements OnInit {
         if(!valid) {
             return modal.alert('Missing required fields.');
         }
-        this._userService.saveUser(model)
+        this._service.save(model)
             .subscribe(
                 data => {
                     if(data.success !== true) {

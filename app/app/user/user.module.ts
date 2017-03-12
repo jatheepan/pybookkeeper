@@ -4,8 +4,8 @@ import {CommonModule} from '@angular/common';
 import {PaginatorModule} from "../shared/paginator/paginator.module";
 import {ModalModule} from "../shared/modal/modal.module";
 import {TypeAheadModule} from "../shared/typeAhead/typeAhead.module";
-import {ConfirmDirective} from '../shared/directives/confirm.directive'
 import {TagModule} from '../shared/tag/tag.module';
+import {DirectivesModule} from '../shared/directives/directives.module';
 import {
     UserHomeComponent,
     UserEditComponent,
@@ -26,14 +26,14 @@ import {
         PaginatorModule,
         TypeAheadModule,
         ModalModule,
-        TagModule
+        TagModule,
+        DirectivesModule
     ],
     declarations: [
         UserHomeComponent,
         UserViewComponent,
         UserEditComponent,
-        UserAddComponent,
-        ConfirmDirective
+        UserAddComponent
     ],
     exports: [UserHomeComponent, UserViewComponent, UserEditComponent, UserAddComponent]
 })

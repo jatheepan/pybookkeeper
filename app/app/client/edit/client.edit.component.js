@@ -1,0 +1,54 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var client_service_1 = require('../client.service');
+var forms_1 = require('@angular/forms');
+var ClientEditComponent = (function () {
+    /**
+     * Constructor
+     * @param _route
+     * @param _service
+     */
+    function ClientEditComponent(_route, _service, _fb) {
+        this._route = _route;
+        this._service = _service;
+        this._fb = _fb;
+        this.clientEditForm = null;
+    }
+    ClientEditComponent.prototype.ngOnInit = function () {
+        this.clientEditForm = this._fb.group(client_service_1.clientModel);
+        this.loadClientData();
+    };
+    ClientEditComponent.prototype.onClientFormSubmit = function (values, valid) {
+        console.log(arguments);
+    };
+    /**
+     * Load client from service
+     */
+    ClientEditComponent.prototype.loadClientData = function () {
+        var _this = this;
+        this._route.params.subscribe(function (params) {
+            _this._service.getClientDetail(params['id'])
+                .subscribe(function (data) { return _this.clientEditForm = _this._fb.group(data); });
+        });
+    };
+    ClientEditComponent = __decorate([
+        core_1.Component({
+            templateUrl: './app/client/edit/client.edit.component.html',
+            providers: [client_service_1.ClientService]
+        }), 
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, client_service_1.ClientService, forms_1.FormBuilder])
+    ], ClientEditComponent);
+    return ClientEditComponent;
+}());
+exports.ClientEditComponent = ClientEditComponent;
+//# sourceMappingURL=client.edit.component.js.map

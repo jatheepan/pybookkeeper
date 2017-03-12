@@ -35,7 +35,9 @@ var AppModule = (function () {
                 header_module_1.HeaderModule,
                 sidebar_module_1.SidebarModule
             ],
-            declarations: [app_component_1.AppComponent],
+            declarations: [
+                app_component_1.AppComponent
+            ],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
