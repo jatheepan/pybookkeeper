@@ -5,7 +5,7 @@
         <p class="description">Edit existing client.</p>
     </div>
     <div>
-        <form [formGroup]="clientEditForm" novalidate (ngSubmit)="onClientFormSubmit(cleintEditForm.value, clientEditForm.valid)">
+        <form [formGroup]="clientEditForm" novalidate (ngSubmit)="onClientFormSubmit(clientEditForm.value, clientEditForm.valid)">
             <label>
                 First name
                 <input type="text" formControlName="first_name">
@@ -44,10 +44,11 @@
             </label>
             <label>
                 Province
-                <input type="text" formControlName="province_id">
+                <select formControlName="province_id">
+                    <option value="">Select</option>
+                    <option *ngFor="let province of provinces" [value]="province.id">{{province.title}}</option>
+                </select>
             </label>
-
-
             <button type="submit" class="button">Save</button>
         </form>
     </div>

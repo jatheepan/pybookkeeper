@@ -24,18 +24,19 @@ def client_list(options):
 
     query_total = session.query(ClientModel).count()
 
-    for user, province in query:
+    for client, province in query:
         clients.append({
-            'id': user.id,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
-            'company_name': user.company_name,
-            'email': user.email,
-            'phone_number': user.phone_number,
-            'street': user.street,
-            'address_line_2': user.address_line_2,
-            'city': user.city,
-            'postal_code': user.postal_code,
+            'id': client.id,
+            'first_name': client.first_name,
+            'last_name': client.last_name,
+            'company_name': client.company_name,
+            'email': client.email,
+            'phone_number': client.phone_number,
+            'street': client.street,
+            'address_line_2': client.address_line_2,
+            'city': client.city,
+            'postal_code': client.postal_code,
+            'province_id': client.province_id,
             'province': province.title if province else None
         })
 
@@ -71,6 +72,7 @@ def by_id(client_id):
             'address_line_2': client.address_line_2,
             'city': client.city,
             'postal_code': client.postal_code,
+            'province_id': client.province_id,
             'province': province.title if province else None
         }
 

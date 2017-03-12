@@ -4,6 +4,19 @@ import {configs} from '../shared/config';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
+export let clientModel = {
+    first_name: ['Your first name', [<any>Validators.required]],
+    last_name: ['Your last name', [<any>Validators.required]],
+    email: ['Email', [<any>Validators.required]],
+    address_line_2: ['Address line 2', [<any>Validators.required]],
+    street: ['Street', [<any>Validators.required]],
+    city: ['City', [<any>Validators.required]],
+    postal_code: ['Postal code', [<any>Validators.required]],
+    province_id: ['Province ID', [<any>Validators.required]],
+    company_name: ['Company name', [<any>Validators.required]],
+    phone_number: ['Phone number']
+};
+
 @Injectable()
 export class ClientService {
     constructor(private _http: Http) {
@@ -37,15 +50,3 @@ export class ClientService {
     }
 }
 
-export let clientModel = {
-    first_name: ['Your first name', [<any>Validators.required]],
-    last_name: ['Your last name', [<any>Validators.required]],
-    email: ['Email', [<any>Validators.required]],
-    address_line_2: ['Address line 2', [<any>Validators.required]],
-    street: ['Street', [<any>Validators.required]],
-    city: ['City', [<any>Validators.required]],
-    postal_code: ['Postal code', [<any>Validators.required]],
-    province_id: ['Province', [<any>Validators.required]],
-    company_name: ['Company name', [<any>Validators.required]],
-    phone_number: ['Phone number']
-};

@@ -11,22 +11,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var client_service_1 = require('../client.service');
+var all_1 = require('../../services/all');
 var forms_1 = require('@angular/forms');
 var ClientEditComponent = (function () {
     /**
      * Constructor
      * @param _route
      * @param _service
+     * @param _fb
+     * @param _province
      */
-    function ClientEditComponent(_route, _service, _fb) {
+    function ClientEditComponent(_route, _service, _fb, _province) {
         this._route = _route;
         this._service = _service;
         this._fb = _fb;
+        this._province = _province;
         this.clientEditForm = null;
+        this.provinces = null;
     }
     ClientEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.clientEditForm = this._fb.group(client_service_1.clientModel);
         this.loadClientData();
+        this._province.getData().subscribe(function (data) { return _this.provinces = data; });
     };
     ClientEditComponent.prototype.onClientFormSubmit = function (values, valid) {
         console.log(arguments);
@@ -44,9 +51,9 @@ var ClientEditComponent = (function () {
     ClientEditComponent = __decorate([
         core_1.Component({
             templateUrl: './app/client/edit/client.edit.component.html',
-            providers: [client_service_1.ClientService]
+            providers: [client_service_1.ClientService, all_1.Province]
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, client_service_1.ClientService, forms_1.FormBuilder])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, client_service_1.ClientService, forms_1.FormBuilder, all_1.Province])
     ], ClientEditComponent);
     return ClientEditComponent;
 }());
