@@ -1,0 +1,1 @@
+export {ProvinceService as Province} from './province.service';
