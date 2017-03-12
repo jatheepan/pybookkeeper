@@ -61,6 +61,7 @@ def by_id(client_id):
 
     if client:
         data = {
+            'id': client.id,
             'first_name': client.first_name,
             'last_name': client.last_name,
             'company_name': client.company_name,

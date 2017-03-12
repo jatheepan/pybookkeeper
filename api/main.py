@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
-from routes import home, client, user, expense, income
+from routes import home, client, user, expense, income, resources
 
 app = Flask(__name__)
 api = Api(app)
@@ -18,7 +18,8 @@ path_configs = {
     expense.ExpenseList: '/expenses/',
     expense.ExpenseById: '/expenses/<string:expense_id>',
     income.IncomeList: '/incomes/',
-    income.IncomeById: '/incomes/<string:income_id>'
+    income.IncomeById: '/incomes/<string:income_id>',
+    resources.ProvinceList: '/resource/provinces/'
 }
 
 for key, value in path_configs.iteritems():
