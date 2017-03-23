@@ -17,7 +17,7 @@ var ProvinceService = (function () {
     }
     ProvinceService.prototype.getData = function () {
         return this._http
-            .get(config_1.configs.api.url + "resource/provinces")
+            .get(config_1.configs.api.url + "resource/provinces/")
             .map(function (res) {
             var result = res.json();
             return (result && result.success === true) ? result.data : null;

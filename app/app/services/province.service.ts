@@ -9,7 +9,7 @@ export class ProvinceService {
 
     public getData() {
         return this._http
-            .get(`${configs.api.url}resource/provinces`)
+            .get(`${configs.api.url}resource/provinces/`)
             .map(res => {
                 let result = res.json();
                 return (result && result.success === true) ? result.data : null;
