@@ -41,3 +41,11 @@ class ClientById(Resource):
             'success': True,
             'data': result
         }
+
+    def delete(self, client_id):
+        result = Client.delete(client_id)
+        return {
+            'success': result.get('success', False),
+            'message': result.get('message', None),
+            'data': result.get('data')
+        }

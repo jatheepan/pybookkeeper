@@ -1,3 +1,5 @@
+from flask import jsonify
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
@@ -8,7 +10,7 @@ from api.model.Province import Province as ProvinceModel
 
 engine = create_engine(conn_string())
 Session = sessionmaker()
-Session.configure(bind=engine)
+Session.configure(bind = engine)
 session = Session()
 
 
@@ -18,8 +20,8 @@ def client_list(options):
     clients = []
 
     query = session\
-        .query(ClientModel, ProvinceModel) \
-        .outerjoin(ProvinceModel, ClientModel.province_id == ProvinceModel.id) \
+        .query(ClientModel, ProvinceModel)\
+        .outerjoin(ProvinceModel, ClientModel.province_id == ProvinceModel.id)\
         .limit(limit)\
         .offset((page - 1) * limit)
 
@@ -93,8 +95,8 @@ def save(data):
             postal_code = data.get('postal_code'),
             province_id = data.get('province_id'),
             street = data.get('street'),
-            user_id = 15, #hardcoded for now
-            account_id = 15 #hardcoded for now
+            user_id = 15,  # hardcoded for now
+            account_id = 15  # hardcoded for now
         )
         session.add(row)
         session.commit()
@@ -119,6 +121,41 @@ def save(data):
         return {
             'success': False,
             'message': e
+        }
+    finally:
+        session.close()
+
+
+def delete(id):
+    try:
+        query = session.query(ClientModel).filter(ClientModel.id == id)
+        row = query.first()
+        if row is None:
+            raise SQLAlchemyError(Exception('Record not found'))
+        data = {
+            'id': row.id,
+            'first_name': row.first_name,
+            'last_name': row.last_name,
+            'company_name': row.company_name,
+            'email': row.email,
+            'phone_number': row.phone_number,
+            'street': row.street,
+            'address_line_2': row.address_line_2,
+            'city': row.city,
+            'postal_code': row.postal_code,
+            'province_id': row.province_id
+        }
+        query.delete()
+        session.commit()
+        return {
+            'success': True,
+            'message': None,
+            'data': data
+        }
+    except SQLAlchemyError as e:
+        return {
+            'success': False,
+            'message': str(e)
         }
     finally:
         session.close()
