@@ -14,14 +14,14 @@ var config_1 = require('../shared/config');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
 exports.clientModel = {
-    first_name: ['Your first name', [forms_1.Validators.required]],
-    last_name: ['Your last name', [forms_1.Validators.required]],
-    email: ['Email', [forms_1.Validators.required]],
-    address_line_2: ['Address line 2', [forms_1.Validators.required]],
-    street: ['Street', [forms_1.Validators.required]],
-    city: ['City', [forms_1.Validators.required]],
-    postal_code: ['Postal code', [forms_1.Validators.required]],
-    province_id: ['Province ID', [forms_1.Validators.required]],
+    first_name: ['Theepan', [forms_1.Validators.required]],
+    last_name: ['Kanthavel', [forms_1.Validators.required]],
+    email: ['tk@cutedrops.com', [forms_1.Validators.required]],
+    address_line_2: ['line 2', [forms_1.Validators.required]],
+    street: ['ON', [forms_1.Validators.required]],
+    city: ['Scarborough', [forms_1.Validators.required]],
+    postal_code: ['M1P4G9', [forms_1.Validators.required]],
+    province_id: ['', [forms_1.Validators.required]],
     company_name: ['Company name', [forms_1.Validators.required]],
     phone_number: ['Phone number']
 };
@@ -54,6 +54,10 @@ var ClientService = (function () {
             var result = res.json();
             return (result && result.success) ? result.data : null;
         });
+    };
+    ClientService.prototype.save = function (values) {
+        return this._http
+            .post(config_1.configs.api.url + "clients/", values);
     };
     ClientService = __decorate([
         core_1.Injectable(), 

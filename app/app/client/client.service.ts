@@ -5,14 +5,14 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 export let clientModel = {
-    first_name: ['Your first name', [<any>Validators.required]],
-    last_name: ['Your last name', [<any>Validators.required]],
-    email: ['Email', [<any>Validators.required]],
-    address_line_2: ['Address line 2', [<any>Validators.required]],
-    street: ['Street', [<any>Validators.required]],
-    city: ['City', [<any>Validators.required]],
-    postal_code: ['Postal code', [<any>Validators.required]],
-    province_id: ['Province ID', [<any>Validators.required]],
+    first_name: ['Theepan', [<any>Validators.required]],
+    last_name: ['Kanthavel', [<any>Validators.required]],
+    email: ['tk@cutedrops.com', [<any>Validators.required]],
+    address_line_2: ['line 2', [<any>Validators.required]],
+    street: ['ON', [<any>Validators.required]],
+    city: ['Scarborough', [<any>Validators.required]],
+    postal_code: ['M1P4G9', [<any>Validators.required]],
+    province_id: ['', [<any>Validators.required]],
     company_name: ['Company name', [<any>Validators.required]],
     phone_number: ['Phone number']
 };
@@ -47,6 +47,11 @@ export class ClientService {
 
                 return (result && result.success) ? result.data : null;
             });
+    }
+
+    save(values:any) {
+        return this._http
+            .post(`${configs.api.url}clients/`, values);
     }
 }
 
