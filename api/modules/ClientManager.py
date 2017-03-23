@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.exc import SQLAlchemyError
 
 from api.config.db import conn_string
 from api.model.Client import Client as ClientModel
@@ -77,3 +78,47 @@ def by_id(client_id):
         }
 
     return data
+
+
+def save(data):
+    try:
+        row = ClientModel(
+            first_name = data.get('first_name'),
+            last_name = data.get('last_name'),
+            address_line_2 = data.get('address_line_2'),
+            city = data.get('city'),
+            company_name = data.get('company_name'),
+            email = data.get('email'),
+            phone_number = data.get('phone_number'),
+            postal_code = data.get('postal_code'),
+            province_id = data.get('province_id'),
+            street = data.get('street'),
+            user_id = 15, #hardcoded for now
+            account_id = 15 #hardcoded for now
+        )
+        session.add(row)
+        session.commit()
+
+        return {
+            'success': True,
+            'data': {
+                'id': row.id,
+                'first_name': row.first_name,
+                'last_name': row.last_name,
+                'company_name': row.company_name,
+                'email': row.email,
+                'phone_number': row.phone_number,
+                'street': row.street,
+                'address_line_2': row.address_line_2,
+                'city': row.city,
+                'postal_code': row.postal_code,
+                'province_id': row.province_id
+            }
+        }
+    except SQLAlchemyError as e:
+        return {
+            'success': False,
+            'message': e
+        }
+    finally:
+        session.close()

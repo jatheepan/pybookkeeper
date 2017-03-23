@@ -22,6 +22,14 @@ class ClientList(Resource):
             'limit': result['limit']
         }
 
+    def post(self):
+        result = Client.save(request.json)
+        return {
+            'success': result.get('success', False),
+            'message': result.get('message', None),
+            'data': result.get('data', None)
+        }
+
 
 class ClientById(Resource):
     """Operations to client by id."""
