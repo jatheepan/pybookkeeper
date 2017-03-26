@@ -126,6 +126,51 @@ def save(data):
         session.close()
 
 
+def update(id, data):
+    try:
+        query = session.query(ClientModel).filter(ClientModel.id == id)
+        row = query.first()
+        if row is None:
+            raise SQLAlchemyError(Exception('Record not found'))
+
+        row.first_name = data.get('first_name', row.first_name)
+        row.last_name = data.get('last_name', row.last_name)
+        row.company_name = data.get('company_name', row.company_name)
+        row.email = data.get('email', row.email)
+        row.phone_number = data.get('phone_number', row.phone_number)
+        row.street = data.get('street', row.street)
+        row.address_line_2 = data.get('address_line_2', row.address_line_2)
+        row.city = data.get('city', row.city)
+        row.postal_code = data.get('postal_code', row.postal_code)
+        row.province_id = data.get('province_id')
+
+        session.commit()
+
+        return {
+            'success': True,
+            'data': {
+                'id': row.id,
+                'first_name': row.first_name,
+                'last_name': row.last_name,
+                'company_name': row.company_name,
+                'email': row.email,
+                'phone_number': row.phone_number,
+                'street': row.street,
+                'address_line_2': row.address_line_2,
+                'city': row.city,
+                'postal_code': row.postal_code,
+                'province_id': row.province_id
+            }
+        }
+    except SQLAlchemyError as e:
+        return {
+            'success': False,
+            'message': str(e)
+        }
+    finally:
+        session.close()
+
+
 def delete(id):
     try:
         query = session.query(ClientModel).filter(ClientModel.id == id)

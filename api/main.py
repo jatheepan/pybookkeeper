@@ -22,8 +22,8 @@ path_configs = {
     resources.ProvinceList: '/resource/provinces/'
 }
 
-for key, value in path_configs.iteritems():
-    api.add_resource(key, value)
+for handler, path in path_configs.iteritems():
+    api.add_resource(handler, path)
 
 
 # If you need custom headers enable this.

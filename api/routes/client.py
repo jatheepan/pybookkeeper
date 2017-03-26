@@ -42,6 +42,15 @@ class ClientById(Resource):
             'data': result
         }
 
+    def put(self, client_id):
+        result = Client.update(client_id, request.json)
+
+        return {
+            'success': result.get('success', False),
+            'message': result.get('message', None),
+            'data': result.get('data', None)
+        }
+
     def delete(self, client_id):
         result = Client.delete(client_id)
         return {
