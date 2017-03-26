@@ -53,5 +53,19 @@ export class ClientService {
         return this._http
             .post(`${configs.api.url}clients/`, values);
     }
+
+    update(id:Number, values:any) {
+        return this._http
+            .put(`${configs.api.url}clients/${id}`, values)
+            .map(res => {
+                let result = res.json();
+                return (result && result.success) ? result.data : null;
+            });
+    }
+
+    erase(id:Number) {
+        return this._http
+            .delete(`${configs.api.url}clients/${id}`)
+    }
 }
 

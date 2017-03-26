@@ -12,17 +12,20 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var client_service_1 = require('../client.service');
 var all_1 = require('../../services/all');
+var modal_component_1 = require('../../shared/modal/modal.component');
 var forms_1 = require('@angular/forms');
 var ClientEditComponent = (function () {
     /**
      * Constructor
      * @param _route
+     * @param _router
      * @param _service
      * @param _fb
      * @param _province
      */
-    function ClientEditComponent(_route, _service, _fb, _province) {
+    function ClientEditComponent(_route, _router, _service, _fb, _province) {
         this._route = _route;
+        this._router = _router;
         this._service = _service;
         this._fb = _fb;
         this._province = _province;
@@ -36,7 +39,18 @@ var ClientEditComponent = (function () {
         this._province.getData().subscribe(function (data) { return _this.provinces = data; });
     };
     ClientEditComponent.prototype.onClientFormSubmit = function (values, valid) {
-        console.log(arguments);
+        var _this = this;
+        this._route.params.subscribe(function (params) {
+            _this._service.update(params['id'], values)
+                .subscribe(function (data) {
+                _this._router.navigate([("./clients/view/" + params['id'])]);
+                //TODO: redirect to view
+            }, function (err) {
+                //TODO: open error modal
+                var modal = new modal_component_1.ModalComponent();
+                modal.alert(err);
+            });
+        });
     };
     /**
      * Load client from service
@@ -53,7 +67,7 @@ var ClientEditComponent = (function () {
             templateUrl: './app/client/edit/client.edit.component.html',
             providers: [client_service_1.ClientService, all_1.Province]
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute, client_service_1.ClientService, forms_1.FormBuilder, all_1.Province])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, client_service_1.ClientService, forms_1.FormBuilder, all_1.Province])
     ], ClientEditComponent);
     return ClientEditComponent;
 }());

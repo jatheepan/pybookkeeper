@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ClientService, clientModel} from '../client.service';
 import {Province} from '../../services/all';
-
+import {ModalComponent as Modal} from '../../shared/modal/modal.component';
 import {
     FormGroup,
     FormBuilder
@@ -19,11 +19,13 @@ export class ClientEditComponent implements OnInit {
     /**
      * Constructor
      * @param _route
+     * @param _router
      * @param _service
      * @param _fb
      * @param _province
      */
     constructor(private _route: ActivatedRoute,
+                private _router: Router,
                 private _service: ClientService,
                 private _fb: FormBuilder,
                 private _province: Province) {
@@ -36,7 +38,20 @@ export class ClientEditComponent implements OnInit {
     }
 
     onClientFormSubmit(values: any, valid: boolean) {
-        console.log(arguments);
+        this._route.params.subscribe(params => {
+            this._service.update(params['id'], values)
+                .subscribe(
+                    data => {
+                        this._router.navigate([`./clients/view/${params['id']}`]);
+                        //TODO: redirect to view
+                    },
+                    err => {
+                        //TODO: open error modal
+                        let modal = new Modal();
+                        modal.alert(err);
+                    }
+                )
+        });
     }
 
     /**

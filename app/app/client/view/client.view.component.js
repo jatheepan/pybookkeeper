@@ -38,7 +38,11 @@ var ClientViewComponent = (function () {
                 .subscribe(function (data) { return _this.client = data; });
         });
     };
-    ClientViewComponent.prototype.onClientConfirm = function (client) {
+    ClientViewComponent.prototype.onClientDeleteConfirm = function (client) {
+        this.service.erase(client.id)
+            .subscribe(function (data) {
+            console.log(data);
+        });
     };
     ClientViewComponent = __decorate([
         core_1.Component({

@@ -13,6 +13,6 @@
 
     <p>
         <a [routerLink]="'/users/edit/' + user.id" class="button">Edit</a>
-        <button class="delete-button" confirm (confirm)="onDeleteConfirm($event)" [passeddata]="user">Delete</button>
+        <button class="delete-button" confirm (onconfirm)="onDeleteConfirm($event)" [passeddata]="user">Delete</button>
     </p>
 </div>

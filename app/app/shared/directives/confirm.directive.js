@@ -12,8 +12,8 @@ var core_1 = require('@angular/core');
 var modal_component_1 = require('../modal/modal.component');
 var ConfirmDirective = (function () {
     function ConfirmDirective() {
-        this.confirm = new core_1.EventEmitter();
-        this.cancel = new core_1.EventEmitter();
+        this.onconfirm = new core_1.EventEmitter();
+        this.oncancel = new core_1.EventEmitter();
     }
     ConfirmDirective.prototype.onClick = function () {
         var _this = this;
@@ -22,10 +22,10 @@ var ConfirmDirective = (function () {
             message: 'Are you sure?'
         }, function (answer) {
             if (answer === true) {
-                _this.confirm.emit(_this.data);
+                _this.onconfirm.emit(_this.data);
             }
             else {
-                _this.cancel.emit(_this.data);
+                _this.oncancel.emit(_this.data);
             }
         });
     };
@@ -40,11 +40,11 @@ var ConfirmDirective = (function () {
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], ConfirmDirective.prototype, "confirm", void 0);
+    ], ConfirmDirective.prototype, "onconfirm", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], ConfirmDirective.prototype, "cancel", void 0);
+    ], ConfirmDirective.prototype, "oncancel", void 0);
     __decorate([
         core_1.HostListener('click', ['$event']), 
         __metadata('design:type', Function), 

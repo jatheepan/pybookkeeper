@@ -35,8 +35,12 @@ export class ClientViewComponent implements OnInit {
         })
     }
 
-    onClientConfirm(client) {
 
+    onClientDeleteConfirm(client) {
+        this.service.erase(client.id)
+            .subscribe(data => {
+                console.log(data);
+            });
     }
 }
 

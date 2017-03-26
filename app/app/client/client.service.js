@@ -59,6 +59,18 @@ var ClientService = (function () {
         return this._http
             .post(config_1.configs.api.url + "clients/", values);
     };
+    ClientService.prototype.update = function (id, values) {
+        return this._http
+            .put(config_1.configs.api.url + "clients/" + id, values)
+            .map(function (res) {
+            var result = res.json();
+            return (result && result.success) ? result.data : null;
+        });
+    };
+    ClientService.prototype.erase = function (id) {
+        return this._http
+            .delete(config_1.configs.api.url + "clients/" + id);
+    };
     ClientService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

@@ -14,8 +14,8 @@ import {ModalComponent} from '../modal/modal.component';
 export class ConfirmDirective {
     @Input('message') message:any;
     @Input('passeddata') data:any;
-    @Output() confirm = new EventEmitter<any>();
-    @Output() cancel = new EventEmitter<any>();
+    @Output() onconfirm = new EventEmitter<any>();
+    @Output() oncancel = new EventEmitter<any>();
     @HostListener('click', ['$event'])
     onClick() {
         let modal = new ModalComponent();
@@ -23,10 +23,10 @@ export class ConfirmDirective {
             message: 'Are you sure?'
         }, answer => {
             if(answer === true) {
-                this.confirm.emit(this.data);
+                this.onconfirm.emit(this.data);
             }
             else {
-                this.cancel.emit(this.data);
+                this.oncancel.emit(this.data);
             }
         });
     }
