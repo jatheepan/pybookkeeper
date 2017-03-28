@@ -9,6 +9,7 @@ import {SidebarModule} from "./shared/sidebar/sidebar.module";
 import {HeaderModule} from './shared/header/header.module';
 import {UserModule} from './user/user.module';
 import {ClientModule} from './client/client.module';
+import {IncomeModule} from './income/income.module';
 import {DashboardModule} from './dashboard/dashboard.module';
 
 @NgModule({
@@ -19,6 +20,7 @@ import {DashboardModule} from './dashboard/dashboard.module';
         RouterModule.forRoot(routes, {useHash: true}),
         UserModule,
         ClientModule,
+        IncomeModule,
         DashboardModule,
         HeaderModule,
         SidebarModule

@@ -20,6 +20,7 @@ class IncomeList(Resource):
             'page': page
         }
 
+
 class IncomeById(Resource):
     def get(self, income_id):
         result = income.by_id(income_id)

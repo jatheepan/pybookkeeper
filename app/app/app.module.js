@@ -18,6 +18,7 @@ var sidebar_module_1 = require("./shared/sidebar/sidebar.module");
 var header_module_1 = require('./shared/header/header.module');
 var user_module_1 = require('./user/user.module');
 var client_module_1 = require('./client/client.module');
+var income_module_1 = require('./income/income.module');
 var dashboard_module_1 = require('./dashboard/dashboard.module');
 var AppModule = (function () {
     function AppModule() {
@@ -31,6 +32,7 @@ var AppModule = (function () {
                 router_1.RouterModule.forRoot(app_routes_1.routes, { useHash: true }),
                 user_module_1.UserModule,
                 client_module_1.ClientModule,
+                income_module_1.IncomeModule,
                 dashboard_module_1.DashboardModule,
                 header_module_1.HeaderModule,
                 sidebar_module_1.SidebarModule
