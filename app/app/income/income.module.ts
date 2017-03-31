@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {IncomeHomeComponent} from './home/income.home.component';
+import {IncomeAddComponent} from './add/income.add.component';
 import {
     FormsModule,
     ReactiveFormsModule
@@ -15,11 +16,12 @@ import {
         ReactiveFormsModule
     ],
     declarations: [
-        IncomeHomeComponent
-
+        IncomeHomeComponent,
+        IncomeAddComponent
     ],
     exports: [
-        IncomeHomeComponent
+        IncomeHomeComponent,
+        IncomeAddComponent
     ]
 })
 

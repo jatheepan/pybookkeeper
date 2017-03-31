@@ -9,9 +9,9 @@
         <ul class="data-list">
             <li *ngFor="let income of incomes" class="fadein">
                 <a [routerLink]="'view/' + income.id">
+                    <div>{{income.date}}</div>
                     <h4 class="title">
-                        {{income.issued_to}}<br>
-                        {{income.invoice_no}}
+                        {{income.issued_to}} <small>${{income.amount}}</small>
                     </h4>
                 </a>
             </li>

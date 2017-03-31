@@ -19,7 +19,6 @@ export class IncomeHomeComponent implements OnInit {
         this._incomeService.getData(page)
             .subscribe(
                 data => {
-                    console.log(data);
                     this.incomes = data.incomes;
                 },
                 err => {

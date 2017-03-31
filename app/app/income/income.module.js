@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var common_1 = require('@angular/common');
 var income_home_component_1 = require('./home/income.home.component');
+var income_add_component_1 = require('./add/income.add.component');
 var forms_1 = require('@angular/forms');
 var IncomeModule = (function () {
     function IncomeModule() {
@@ -25,10 +26,12 @@ var IncomeModule = (function () {
                 forms_1.ReactiveFormsModule
             ],
             declarations: [
-                income_home_component_1.IncomeHomeComponent
+                income_home_component_1.IncomeHomeComponent,
+                income_add_component_1.IncomeAddComponent
             ],
             exports: [
-                income_home_component_1.IncomeHomeComponent
+                income_home_component_1.IncomeHomeComponent,
+                income_add_component_1.IncomeAddComponent
             ]
         }), 
         __metadata('design:paramtypes', [])

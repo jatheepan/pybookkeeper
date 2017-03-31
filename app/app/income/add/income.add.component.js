@@ -10,32 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var income_service_1 = require('../income.service');
-var IncomeHomeComponent = (function () {
-    function IncomeHomeComponent(_incomeService) {
+var all_1 = require('../../services/all');
+var forms_1 = require('@angular/forms');
+var IncomeAddComponent = (function () {
+    function IncomeAddComponent(_incomeService, _fb, _province) {
         this._incomeService = _incomeService;
-        this.incomes = [];
+        this._fb = _fb;
+        this._province = _province;
+        this.provinces = null;
     }
-    IncomeHomeComponent.prototype.ngOnInit = function () {
-        this.loadIncomes();
-    };
-    IncomeHomeComponent.prototype.loadIncomes = function (page) {
+    IncomeAddComponent.prototype.ngOnInit = function () {
         var _this = this;
-        if (page === void 0) { page = 1; }
-        this._incomeService.getData(page)
-            .subscribe(function (data) {
-            _this.incomes = data.incomes;
-        }, function (err) {
-            console.log(err);
-        });
+        this.addForm = this._fb.group(income_service_1.incomeModel);
+        this._province.getData().subscribe(function (data) { return _this.provinces = data; });
     };
-    IncomeHomeComponent = __decorate([
+    IncomeAddComponent = __decorate([
         core_1.Component({
-            templateUrl: './app/income/home/income.home.component.html',
-            providers: [income_service_1.IncomeService]
+            templateUrl: './app/income/add/income.add.component.html',
+            providers: [income_service_1.IncomeService, all_1.Province]
         }), 
-        __metadata('design:paramtypes', [income_service_1.IncomeService])
-    ], IncomeHomeComponent);
-    return IncomeHomeComponent;
+        __metadata('design:paramtypes', [income_service_1.IncomeService, forms_1.FormBuilder, all_1.Province])
+    ], IncomeAddComponent);
+    return IncomeAddComponent;
 }());
-exports.IncomeHomeComponent = IncomeHomeComponent;
-//# sourceMappingURL=income.home.component.js.map
+exports.IncomeAddComponent = IncomeAddComponent;
+//# sourceMappingURL=income.add.component.js.map

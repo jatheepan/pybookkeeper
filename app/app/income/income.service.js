@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
 var config_1 = require('../shared/config');
 var http_1 = require('@angular/http');
 var IncomeService = (function () {
@@ -33,11 +34,40 @@ var IncomeService = (function () {
             }
         });
     };
-    IncomeService.prototype.save = function (income) { };
-    IncomeService.prototype.update = function (id, income) { };
-    IncomeService.prototype.erase = function (id) { };
-    IncomeService.prototype.getOne = function (id) { };
-    IncomeService.prototype.search = function (query) { };
+    IncomeService.prototype.save = function (income) {
+        var headers = new http_1.Headers({
+            'Content-Type': 'application/json'
+        });
+        return this._http
+            .post(config_1.configs.api.url + "incomes/", income, headers)
+            .map(function (res) { return res.json(); });
+    };
+    IncomeService.prototype.update = function (id, income) {
+        var headers = new http_1.Headers({
+            'Content-Type': 'application/json'
+        });
+        return this._http
+            .put(config_1.configs.api.url + "incomes/" + id, income, headers)
+            .map(function (res) { return res.json(); });
+    };
+    IncomeService.prototype.erase = function (id) {
+        return this._http
+            .delete(config_1.configs.api.url + "incomes/" + id)
+            .map(function (res) {
+            var result = res.json();
+            return (result && result.success) ? result.data : null;
+        });
+    };
+    IncomeService.prototype.getOne = function (id) {
+        return this._http
+            .get(config_1.configs.api.url + "incomes/" + id)
+            .map(function (res) {
+            var result = res.json();
+            return (result && result.success) ? result.data : null;
+        });
+    };
+    IncomeService.prototype.search = function (query) {
+    };
     IncomeService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
@@ -45,5 +75,15 @@ var IncomeService = (function () {
     return IncomeService;
 }());
 exports.IncomeService = IncomeService;
-exports.incomeModel = {};
+exports.incomeModel = {
+    date: ['', [forms_1.Validators.required]],
+    issued_to: ['me', [forms_1.Validators.required]],
+    invoice_no: ['', [forms_1.Validators.required]],
+    amount: ['', [forms_1.Validators.required]],
+    prorated_amount: ['', [forms_1.Validators.required]],
+    hst_amount: ['', [forms_1.Validators.required]],
+    user_entered_hst: ['', [forms_1.Validators.required]],
+    province_id: ['', [forms_1.Validators.required]],
+    invoice_id: ['', [forms_1.Validators.required]]
+};
 //# sourceMappingURL=income.service.js.map

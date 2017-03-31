@@ -74,7 +74,7 @@ export class UserService {
     }
 }
 
-export let userModel = {
+    export let userModel = {
     username: ['username', [<any>Validators.required, <any>Validators.minLength(6)]],
     password: ['password', [<any>Validators.required, <any>Validators.minLength(6)]],
     first_name: ['your first name', [<any>Validators.required]],
