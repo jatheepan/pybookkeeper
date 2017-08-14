@@ -1,6 +1,7 @@
 .DS_Store
 .idea
 
+app/*
 app/node_modules
 app/resources/.sass-cache
 
